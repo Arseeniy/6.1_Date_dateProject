@@ -12,12 +12,12 @@ public class DateDifferenceCalculator {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         LocalDate firstDate = LocalDate.parse(firstVar, formatter);
         LocalDate secondDate = LocalDate.parse(secondVar, formatter);
-        long diffInDays = 0;
-        if(firstDate.isBefore(secondDate)){
-            diffInDays = ChronoUnit.DAYS.between(firstDate, secondDate);
-        }else {
-            diffInDays = ChronoUnit.DAYS.between(secondDate, firstDate);
-        }
+        long diffInDays = getDifference(firstDate, secondDate);
         System.out.println(String.format("Разница в днях между датами: %d", diffInDays));
+    }
+
+    private static long getDifference(LocalDate firstDate, LocalDate secondDate) {
+        return firstDate.isBefore(secondDate) ? ChronoUnit.DAYS.between(firstDate, secondDate) :
+                ChronoUnit.DECADES.between(secondDate, firstDate);
     }
 }
